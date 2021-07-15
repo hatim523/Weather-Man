@@ -17,7 +17,7 @@ class AbstractReader:
         self.file_data = None
         self.weather_data = []
 
-    def read_file(self) -> None:
+    def read_file(self) -> tuple:
         raise NotImplementedError
 
     def get_data(self) -> List[Weather]:
@@ -51,6 +51,7 @@ class AbstractReader:
                 wind_dir=read_float_value(row_data[22])
             ))
         except Exception as e:
-            print("Exception in map_data: ", str(e))
+            pass
+            # print("Exception in map_data: ", str(e))
 
 
