@@ -24,3 +24,10 @@ def read_files(location: str) -> tuple:
     if not weather_files:
         return False, f"No files found in the directory: {location}"
     return True, weather_files
+
+
+def read_float_value(value):
+    try:
+        return float(value)
+    except:
+        return None
