@@ -36,7 +36,7 @@ class WeatherCalculator:
 
     def calculate_lowest_temperature(self):
         if self.lowest_temperature in self.calculated_metrics:
-            return self.calculated_metrics[self.highest_temperature]
+            return self.calculated_metrics[self.lowest_temperature]
 
         self.calculate_all_metrics()
         return self.calculate_lowest_temperature()
@@ -70,7 +70,7 @@ class WeatherCalculator:
         return self.calculate_avg_mean_humidity()
 
     def calculate_all_metrics(self):
-        highest_humidity, highest_humidity_date = -999, None
+        highest_humidity, highest_humidity_date = 0, None
         highest_temp, highest_temp_date = 0, None
         lowest_temp, lowest_temp_date = 999, None
 
@@ -81,8 +81,8 @@ class WeatherCalculator:
         for weather in self.data:
             highest_humidity, highest_humidity_date = get_max_value_with_date(highest_humidity, highest_humidity_date,
                                                                               weather.max_humidity, weather.date)
-            highest_temp = get_max_value_with_date(highest_temp, highest_temp_date, weather.max_temp, weather.date)
-            lowest_temp = get_min_value_with_date(lowest_temp, lowest_temp_date, weather.min_temp, weather.date)
+            highest_temp, highest_temp_date = get_max_value_with_date(highest_temp, highest_temp_date, weather.max_temp, weather.date)
+            lowest_temp, lowest_temp_date = get_min_value_with_date(lowest_temp, lowest_temp_date, weather.min_temp, weather.date)
 
             if weather.mean_humidity:
                 avg_mean_humidity += weather.mean_humidity

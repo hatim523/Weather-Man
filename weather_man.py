@@ -1,5 +1,6 @@
 from typing import List
 
+from weather_calc import WeatherCalculator
 from weather_data_class import Weather
 
 
@@ -10,7 +11,7 @@ class WeatherMan:
     def add_new_data(self, data: List[Weather]):
         self.weather_data += data
 
-    def filter_data(self, year, month=None):
+    def filter_data(self, year, month=None) -> WeatherCalculator:
         if month is not None:
             return self.__filter_data_by_year_and_month(year, month)
 
@@ -22,7 +23,7 @@ class WeatherMan:
         for data in self.weather_data:
             if data.date.year == year:
                 filtered_data.append(data)
-        return filtered_data
+        return WeatherCalculator(filtered_data, year=year)
 
     def __filter_data_by_year_and_month(self, year, month):
         year = int(year)
@@ -33,5 +34,5 @@ class WeatherMan:
             if data.date.year == year and data.date.month == month:
                 filtered_data.append(data)
 
-        return filtered_data
+        return WeatherCalculator(filtered_data, year=year, month=month)
 

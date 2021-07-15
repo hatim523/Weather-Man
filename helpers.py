@@ -42,7 +42,7 @@ def get_max_value_with_date(value_1, value_1_date, value_2, value_2_date):
     if value_2 is None:
         return value_1, value_1_date
 
-    return value_1, value_1_date if value_1 > value_2 else value_2, value_2_date
+    return (value_1, value_1_date) if value_1 > value_2 else (value_2, value_2_date)
 
 
 def get_min_value_with_date(value_1, value_1_date, value_2, value_2_date):
@@ -51,7 +51,7 @@ def get_min_value_with_date(value_1, value_1_date, value_2, value_2_date):
     if value_2 is None:
         return value_1, value_1_date
 
-    return value_1, value_1_date if value_1 < value_2 else value_2, value_2_date
+    return (value_1, value_1_date) if value_1 < value_2 else (value_2, value_2_date)
 
 
 def get_year_and_month_from_input(input_str: str):

@@ -6,6 +6,10 @@ class ReportGenerator:
         self.weather_calculator = weather_calc
 
     def generate_e_report(self):
+        if not self.weather_calculator.data:
+            print("No data found for selected date.")
+            return
+
         highest_temp = self.weather_calculator.calculate_highest_temperature()
         lowest_temp = self.weather_calculator.calculate_lowest_temperature()
         humidity = self.weather_calculator.calculate_highest_humidity()
