@@ -33,17 +33,19 @@ class FileProcessor:
 
     def __process_files(self):
         for file in self.weather_files:
-            file_reader = self.__get_file_reader(file)
+            file_reader = self.__get_file_reader__(os.path.join(self.directory, file))
 
             if file_reader is None:
                 print(f"File: {file} cannot be read. Extension currently not supported.")
                 continue
 
-            file_reader.read_file()
+            status, details = file_reader.read_file()
+            if not status:
+                print(details)
+
             self.weather_man.add_new_data(file_reader.get_data())
 
-
-    def __get_file_reader(self, filename: str) -> AbstractReader:
+    def __get_file_reader__(self, filename: str) -> AbstractReader:
         if filename.endswith(".tsv"):
             return TSVReader(filename)
         elif filename.endswith(".txt"):
