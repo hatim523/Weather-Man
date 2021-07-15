@@ -5,14 +5,13 @@ class TxtReader(AbstractReader):
     def __init__(self, filename: str):
         super().__init__(filename)
 
-    def read_file(self) -> bool:
+    def read_file(self) -> tuple:
         try:
             self.file_data = open(self.filename).read()
             self.__process_file__()
-            return True
+            return True, None
         except Exception as e:
-            print(str(e))
-            return False
+            return False, str(e)
 
     def __process_file__(self):
         rows = self.file_data.split("\n")

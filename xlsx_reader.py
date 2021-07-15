@@ -6,14 +6,13 @@ class XLSXReader(AbstractReader):
     def __init__(self, filename: str):
         super().__init__(filename)
 
-    def read_file(self):
+    def read_file(self) -> tuple:
         try:
             self.__xlsx_reader__()
             self.__process_file__()
-            return True
+            return True, None
         except Exception as e:
-            print(str(e))
-            return False
+            return False, str(e)
 
     def __xlsx_reader__(self):
         """
