@@ -2,6 +2,7 @@ import sys
 import getopt
 
 from file_processor import FileProcessor
+from helpers import get_year_and_month_from_input
 from report_generator import ReportGenerator
 from weather_man import WeatherMan
 
@@ -25,13 +26,19 @@ try:
 
     for opt, arg in opts:
         if opt == '-a':
-            """TODO"""
+            year, month = get_year_and_month_from_input(arg)
+            calculator = weather_man.filter_data(year=year, month=month)
+            report_generator = ReportGenerator(calculator)
+            report_generator.generate_a_report()
         elif opt == '-e':
             calculator = weather_man.filter_data(year=arg)
             report_generator = ReportGenerator(calculator)
             report_generator.generate_e_report()
         elif opt == '-c':
-            """TODO"""
+            year, month = get_year_and_month_from_input(arg)
+            calculator = weather_man.filter_data(year=year, month=month)
+            report_generator = ReportGenerator(calculator)
+            report_generator.generate_c_report()
         elif opt == '-h':
             print(usage_text)
             sys.exit(0)
