@@ -35,4 +35,3 @@ class WeatherMan:
                 filtered_data.append(data)
 
         return WeatherCalculator(filtered_data, year=year, month=month)
-

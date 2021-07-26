@@ -15,9 +15,12 @@ class ReportGenerator:
         lowest_temp = self.weather_calculator.calculate_lowest_temperature()
         humidity = self.weather_calculator.calculate_highest_humidity()
 
-        print(f"Highest: {highest_temp['value']}C on {highest_temp['date'].strftime('%B %d')}")
-        print(f"Lowest: {lowest_temp['value']}C on {lowest_temp['date'].strftime('%B %d')}")
-        print(f"Humidity: {humidity['value']}% on {humidity['date'].strftime('%B %d')}")
+        print(f"Highest: {highest_temp['value']}C on "
+              f"{highest_temp['date'].strftime('%B %d')}")
+        print(f"Lowest: {lowest_temp['value']}C on "
+              f"{lowest_temp['date'].strftime('%B %d')}")
+        print(f"Humidity: {humidity['value']}% on "
+              f"{humidity['date'].strftime('%B %d')}")
         print()
 
     def generate_a_report(self):
@@ -25,9 +28,12 @@ class ReportGenerator:
             print("No data found for selected date.")
             return
 
-        avg_highest_temp = self.weather_calculator.calculate_avg_highest_temperature()
-        avg_lowest_temp = self.weather_calculator.calculate_avg_lowest_temperature()
-        avg_mean_humidity = self.weather_calculator.calculate_avg_mean_humidity()
+        avg_highest_temp = self.weather_calculator. \
+            calculate_avg_highest_temperature()
+        avg_lowest_temp = self.weather_calculator. \
+            calculate_avg_lowest_temperature()
+        avg_mean_humidity = self.weather_calculator. \
+            calculate_avg_mean_humidity()
 
         print(f"Highest Average: {round(avg_highest_temp, 2)}C")
         print(f"Lowest Average: {round(avg_lowest_temp, 2)}C")
@@ -41,19 +47,19 @@ class ReportGenerator:
 
         print(self.weather_calculator.filtered_data_for.strftime("%B %Y"))
         for i in range(1, 32):
-            temp_values = self.weather_calculator.get_temperature_values_for_day(i)
+            temp_values = self.weather_calculator. \
+                get_temperature_values_for_day(i)
             if temp_values is None:
                 continue
 
             # if either value is None, skip that day
-            if not(temp_values[0] and temp_values[1]):
+            if not (temp_values[0] and temp_values[1]):
                 continue
 
             print(str(i).zfill(2), end=' ')
 
             highest_temp_repr = "+" * int(temp_values[0])
             lowest_temp_repr = "+" * int(temp_values[1])
-
 
             print(colored(highest_temp_repr, "red"), end=" ")
             print(int(temp_values[0]))

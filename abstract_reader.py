@@ -26,7 +26,8 @@ class AbstractReader:
     def map_data(self, row_data: Union[list, tuple]):
         try:
             self.weather_data.append(Weather(
-                date=datetime.datetime.strptime(row_data[0], "%Y-%m-%d").date(),
+                date=datetime.datetime.strptime(row_data[0],
+                                                "%Y-%m-%d").date(),
                 max_temp=read_float_value(row_data[1]),
                 mean_temp=read_float_value(row_data[2]),
                 min_temp=read_float_value(row_data[3]),
@@ -50,8 +51,5 @@ class AbstractReader:
                 events=row_data[21],
                 wind_dir=read_float_value(row_data[22])
             ))
-        except Exception as e:
+        except Exception:
             pass
-            # print("Exception in map_data: ", str(e))
-
-

@@ -28,8 +28,10 @@ class XLSXReader(AbstractReader):
 
     def __process_file__(self):
         """
-        file_data: format -> [ ('2016-5-1', '27', '21', '15', '9', '3', '-1', '22', '19', '15', None, None, None,
-                                '10.0', '7.0', '4.0', '4', '2', None, '0.0', None, None, '-1') ]
+        file_data: format ->
+        [ ('2016-5-1', '27', '21', '15', '9', '3', '-1', '22', '19', '15',
+            None, None, None, '10.0', '7.0', '4.0', '4', '2', None, '0.0',
+            None, None, '-1') ]
         """
 
         # removing first row as it is header row

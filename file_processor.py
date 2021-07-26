@@ -22,8 +22,12 @@ class FileProcessor:
         if not os.path.exists(self.directory):
             return False, "Invalid location"
 
-        self.weather_files = [f for f in os.listdir(self.directory) if os.path.isfile(os.path.join(self.directory, f)) and
-                         (f.endswith(".tsv") or f.endswith(".txt") or f.endswith(".xlsx"))]
+        self.weather_files = [f for f in os.listdir(self.directory) if
+                              os.path.isfile(os.path.join(self.directory, f))
+                              and
+                              (f.endswith(".tsv") or
+                               f.endswith(".txt") or
+                               f.endswith(".xlsx"))]
 
         if not self.weather_files:
             return False, f"No files found in the directory: {self.directory}"
@@ -33,10 +37,12 @@ class FileProcessor:
 
     def __process_files(self):
         for file in self.weather_files:
-            file_reader = self.__get_file_reader__(os.path.join(self.directory, file))
+            file_reader = self.__get_file_reader__(os.path.join(self.directory,
+                                                                file))
 
             if file_reader is None:
-                print(f"File: {file} cannot be read. Extension currently not supported.")
+                print(f"File: {file} cannot be read. "
+                      f"Extension currently not supported.")
                 continue
 
             status, details = file_reader.read_file()
