@@ -24,6 +24,9 @@ class AbstractReader:
         return self.weather_data
 
     def map_data(self, row_data: Union[list, tuple]):
+        """
+        Maps the row data to Weather class
+        """
         try:
             self.weather_data.append(Weather(
                 date=datetime.datetime.strptime(row_data[0],
