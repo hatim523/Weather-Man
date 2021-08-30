@@ -18,8 +18,7 @@ class FileProcessor:
 
     def read_files(self) -> tuple:
         """
-
-        :rtype: object
+        Checks if the given directory exists and invokes relevant reader
         """
         if not os.path.exists(self.directory):
             return False, "Invalid location"
@@ -35,6 +34,9 @@ class FileProcessor:
         return True, None
 
     def __process_files(self):
+        """
+        Invokes relevant reader class based on file extension
+        """
         for file in self.weather_files:
             file_reader = self.__get_file_reader__(os.path.join(self.directory,
                                                                 file))
@@ -51,6 +53,9 @@ class FileProcessor:
             self.weather_man.add_new_data(file_reader.get_data())
 
     def __get_file_reader__(self, filename: str) -> AbstractReader:
+        """
+        Returns a reader based on file extension
+        """
         if filename.endswith(".tsv"):
             return TSVReader(filename)
         elif filename.endswith(".txt"):

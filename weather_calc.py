@@ -32,47 +32,7 @@ class WeatherCalculator:
         self.avg_lowest_temperature = "avg_lowest_temp"
         self.avg_mean_humidity = "avg_mean_humidity"
 
-    def calculate_highest_temperature(self):
-        if self.highest_temperature in self.calculated_metrics:
-            return self.calculated_metrics[self.highest_temperature]
-
         self.calculate_all_metrics()
-        return self.calculate_highest_temperature()
-
-    def calculate_lowest_temperature(self):
-        if self.lowest_temperature in self.calculated_metrics:
-            return self.calculated_metrics[self.lowest_temperature]
-
-        self.calculate_all_metrics()
-        return self.calculate_lowest_temperature()
-
-    def calculate_highest_humidity(self):
-        if self.humidity in self.calculated_metrics:
-            return self.calculated_metrics[self.humidity]
-
-        self.calculate_all_metrics()
-        return self.calculate_highest_humidity()
-
-    def calculate_avg_highest_temperature(self):
-        if self.avg_highest_temperature in self.calculated_metrics:
-            return self.calculated_metrics[self.avg_highest_temperature]
-
-        self.calculate_all_metrics()
-        return self.calculate_avg_highest_temperature()
-
-    def calculate_avg_lowest_temperature(self):
-        if self.avg_lowest_temperature in self.calculated_metrics:
-            return self.calculated_metrics[self.avg_lowest_temperature]
-
-        self.calculate_all_metrics()
-        return self.calculate_avg_lowest_temperature()
-
-    def calculate_avg_mean_humidity(self):
-        if self.avg_mean_humidity in self.calculated_metrics:
-            return self.calculated_metrics[self.avg_mean_humidity]
-
-        self.calculate_all_metrics()
-        return self.calculate_avg_mean_humidity()
 
     def get_divide_by_value(self, non_null_values):
         return len(self.data) if self.include_none_in_calculations else non_null_values

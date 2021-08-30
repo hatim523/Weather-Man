@@ -11,9 +11,9 @@ class ReportGenerator:
             print("No data found for selected date.")
             return
 
-        highest_temp = self.weather_calculator.calculate_highest_temperature()
-        lowest_temp = self.weather_calculator.calculate_lowest_temperature()
-        humidity = self.weather_calculator.calculate_highest_humidity()
+        highest_temp = self.weather_calculator.calculated_metrics[self.weather_calculator.highest_temperature]
+        lowest_temp = self.weather_calculator.calculated_metrics[self.weather_calculator.lowest_temperature]
+        humidity = self.weather_calculator.calculated_metrics[self.weather_calculator.humidity]
 
         print(f"Highest: {highest_temp['value']}C on "
               f"{highest_temp['date'].strftime('%B %d')}")
@@ -28,12 +28,9 @@ class ReportGenerator:
             print("No data found for selected date.")
             return
 
-        avg_highest_temp = self.weather_calculator. \
-            calculate_avg_highest_temperature()
-        avg_lowest_temp = self.weather_calculator. \
-            calculate_avg_lowest_temperature()
-        avg_mean_humidity = self.weather_calculator. \
-            calculate_avg_mean_humidity()
+        avg_highest_temp = self.weather_calculator.calculated_metrics[self.weather_calculator.avg_highest_temperature]
+        avg_lowest_temp = self.weather_calculator.calculated_metrics[self.weather_calculator.avg_lowest_temperature]
+        avg_mean_humidity = self.weather_calculator.calculated_metrics[self.weather_calculator.avg_mean_humidity]
 
         print(f"Highest Average: {round(avg_highest_temp, 2)}C")
         print(f"Lowest Average: {round(avg_lowest_temp, 2)}C")
