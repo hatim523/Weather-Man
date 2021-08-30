@@ -44,7 +44,8 @@ class ReportGenerator:
             print("No data found for selected date.")
             return
 
-        print(self.weather_calculator.filtered_data_for.strftime("%B %Y"))
+        date = self.weather_calculator.filtered_data_for.strftime("%B %Y")
+        print(date)
         for i in range(1, 32):
             temp_values = self.weather_calculator. \
                 get_temperature_values_for_day(i)
