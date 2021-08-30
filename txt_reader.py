@@ -10,7 +10,7 @@ class TxtReader(AbstractReader):
             self.file_data = open(self.filename).read()
             self.__process_file__()
             return True, None
-        except Exception as e:
+        except FileNotFoundError as e:
             return False, str(e)
 
     def __process_file__(self):

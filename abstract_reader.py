@@ -51,5 +51,7 @@ class AbstractReader:
                 events=row_data[21],
                 wind_dir=read_float_value(row_data[22])
             ))
-        except Exception:
+        except IndexError:
+            pass
+        except ValueError:
             pass
