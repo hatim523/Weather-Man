@@ -38,7 +38,6 @@ class ReportGenerator:
         print(f"Highest Average: {round(avg_highest_temp, 2)}C")
         print(f"Lowest Average: {round(avg_lowest_temp, 2)}C")
         print(f"Average Mean Humidity: {round(avg_mean_humidity, 2)}%")
-        print()
 
     def generate_c_report(self):
         if not self.weather_calculator.data:
