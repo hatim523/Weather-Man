@@ -15,7 +15,7 @@ class TSVReader(AbstractReader):
             self.file_data = [row for row in read_tsv]
             self.__process_file()
             return True, None
-        except Exception as e:
+        except FileNotFoundError as e:
             return False, str(e)
 
     def __process_file(self):

@@ -11,7 +11,7 @@ class XLSXReader(AbstractReader):
             self.__xlsx_reader__()
             self.__process_file__()
             return True, None
-        except Exception as e:
+        except FileNotFoundError as e:
             return False, str(e)
 
     def __xlsx_reader__(self):

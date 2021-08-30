@@ -1,4 +1,4 @@
-from zipfile import ZipFile
+from zipfile import ZipFile, BadZipFile
 
 
 def extract_files(file_location, extract_location) -> tuple:
@@ -7,7 +7,9 @@ def extract_files(file_location, extract_location) -> tuple:
             # Extract all the contents of zip file in different directory
             zipObj.extractall(extract_location)
         return True, None
-    except Exception as e:
+    except BadZipFile as e:
+        return False, str(e)
+    except FileNotFoundError as e:
         return False, str(e)
 
 
