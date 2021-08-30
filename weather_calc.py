@@ -17,9 +17,10 @@ class WeatherCalculator:
 
         self.year = year
         self.month = month
+
+        month = self.month if self.month is not None else 1
         self.filtered_data_for = datetime.date(year=year,
-                                               month=month if month is not None
-                                               else 1,
+                                               month=month,
                                                day=1)
 
         self.calculated_metrics = {}
