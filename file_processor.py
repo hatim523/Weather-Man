@@ -1,4 +1,5 @@
 import os
+import re
 
 from abstract_reader import AbstractReader
 from tsv_reader import TSVReader
@@ -13,6 +14,7 @@ class FileProcessor:
         self.weather_files = None
 
         self.weather_man = WeatherMan()
+        self.file_extension_regex = re.compile("^.*\.(tsv|txt|xlsx)$")
 
     def read_files(self) -> tuple:
         """
@@ -24,10 +26,7 @@ class FileProcessor:
 
         self.weather_files = [f for f in os.listdir(self.directory) if
                               os.path.isfile(os.path.join(self.directory, f))
-                              and
-                              (f.endswith(".tsv") or
-                               f.endswith(".txt") or
-                               f.endswith(".xlsx"))]
+                              and self.file_extension_regex.match(f) is not None]
 
         if not self.weather_files:
             return False, f"No files found in the directory: {self.directory}"
