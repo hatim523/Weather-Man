@@ -74,6 +74,9 @@ class WeatherCalculator:
         self.calculate_all_metrics()
         return self.calculate_avg_mean_humidity()
 
+    def get_divide_by_value(self, non_null_values):
+        return len(self.data) if self.include_none_in_calculations else non_null_values
+
     def calculate_all_metrics(self):
         highest_humidity, highest_humidity_date = 0, None
         highest_temp, highest_temp_date = 0, None
@@ -115,20 +118,14 @@ class WeatherCalculator:
         self.calculated_metrics[self.humidity] = \
             {"value": highest_humidity, "date": highest_humidity_date}
 
-        divide_by = len(self.data) if self.include_none_in_calculations \
-            else non_null_highest_temp_values
         self.calculated_metrics[self.avg_highest_temperature] = \
-            avg_highest_temp / divide_by
+            avg_highest_temp / self.get_divide_by_value(non_null_highest_temp_values)
 
-        divide_by = len(self.data) if self.include_none_in_calculations \
-            else non_null_lowest_temp_values
         self.calculated_metrics[self.avg_lowest_temperature] = \
-            avg_lowest_temp / divide_by
+            avg_lowest_temp / self.get_divide_by_value(non_null_lowest_temp_values)
 
-        divide_by = len(self.data) if self.include_none_in_calculations \
-            else non_null_mean_humidity_values
         self.calculated_metrics[self.avg_mean_humidity] = \
-            avg_mean_humidity / divide_by
+            avg_mean_humidity / self.get_divide_by_value(non_null_mean_humidity_values)
 
     def get_temperature_values_for_day(self, day) -> tuple:
         for weather in self.data:
