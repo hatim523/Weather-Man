@@ -18,6 +18,8 @@ def read_float_value(value):
         return float(value)
     except ValueError:
         return None
+    except TypeError:
+        return None
 
 
 def get_max_value(value_1, value_2):
